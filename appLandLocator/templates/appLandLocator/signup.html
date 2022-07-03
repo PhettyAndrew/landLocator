@@ -1,0 +1,55 @@
+<title>Land Locator: User Registration</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Dosis' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Jura' rel='stylesheet'>
+
+<div class="container" style="text-align: center; margin-top: 20px;">
+    <div class="row" style="display: inline-block;">
+        <h4 style="color: #800000; Font-family: Orbitron;">USER REGISTRATION</h4>
+        <h4 style="Font-family: Playfair Display; margin-top: 10px;">
+            <i>
+                Register With Us To <b>Access and Purchase<br> Virgin Land</b>
+            </i>
+        </h4>
+    </div>
+</div>
+
+
+{% load crispy_forms_tags %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="card card-body" style="margin: 20px; border-color: DarkRed;">
+                <h3 style="text-align: center; margin:10px; font-family: Orbitron; color: #800000;">USER REGISTRATION FORM</h3>
+                <hr>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{  form | crispy }}
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-danger" style="width: 100%; Font-family: Jura;">SUBMIT</button>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p style="Font-family: Dosis; margin-top: 15px;"><a href="{% url 'appLandLocator:login' %}">Already Registered? Login Here</a></p>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="{% url 'appLandLocator:index' %}" style="margin-top: 15px; Font-family: Jura;" class="btn btn-outline-secondary">HOME PAGE</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
