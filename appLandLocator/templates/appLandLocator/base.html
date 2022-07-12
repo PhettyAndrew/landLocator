@@ -13,6 +13,19 @@
     <link href='https://fonts.googleapis.com/css?family=Noto Sans Display' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Gentium Book Plus' rel='stylesheet'>
 
+    <style>
+    .zoom {
+      transition: transform .2s; /* Animation */
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+    }
+
+    .zoom:hover {
+      transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
+    </style>
+
   </head>
   <body>
     <nav class="navbar navbar-expand-lg bg-secondary">
@@ -27,7 +40,7 @@
               <a class="nav-link active" aria-current="page" href="{% url 'appLandLocator:index' %}" style="color: #ffffff; font-family: Gentium Book Plus; font-size: 20px;">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" style="color: #ffffff; font-family: Gentium Book Plus; font-size: 20px;">Lands</a>
+              <a class="nav-link" href="{% url 'appLandLocator:lands' %}" style="color: #ffffff; font-family: Gentium Book Plus; font-size: 20px;">Lands</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #ffffff; font-family: Gentium Book Plus; font-size: 20px;">About & Contact Us</a>

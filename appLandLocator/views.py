@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, logout, login
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Land, Image
 from .forms import UserForm
@@ -42,10 +42,26 @@ def logout_user(request):
 
 
 def index(request):
-    infoCarousel = Land.objects.order_by("dateTime")
-    infoImage = Image.objects.all()
+    infoLand = Land.objects.order_by('?')
     context = {
-        'infoCarousel': infoCarousel,
-        'infoImage': infoImage
+        'infoLand': infoLand,
     }
     return render(request, 'appLandLocator/index.html', context)
+
+
+def lands(request):
+    infoLand = Land.objects.all()
+    context = {
+        'infoLand': infoLand,
+    }
+    return render(request, 'appLandLocator/lands.html', context)
+
+
+def landDetails(request, landId):
+    infoLandDetails = get_object_or_404(Land, landCode=landId)
+    infoImage = Image.objects.filter(land__landCode__contains=landId)
+    context = {
+        'infoLandDetails':infoLandDetails,
+        'infoImage':infoImage,
+    }
+    return render(request, 'appLandLocator/land-details.html', context)

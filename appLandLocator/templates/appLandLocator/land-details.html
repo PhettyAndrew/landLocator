@@ -1,0 +1,40 @@
+{% extends 'appLandLocator/base.html' %}
+{% block title %}LandLocator: Land Details{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-sm-3">
+            <div class="card" style="width: 100%;">
+              <img src="{{infoLandDetails.primaryImage.url}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Land located at {{infoLandDetails.location}}</h5>
+                <p class="card-text">A {{infoLandDetails.size}} Acre, piece of land costing ksh.{{infoLandDetails.cost}}</p>
+              </div>
+            </div>
+            <br>
+            <a class="btn btn-primary" type="button" href="#" >Purchase this Land</a>
+        </div>
+        <div class="col-sm-9">
+            <h5 style="margin-top: 20px;"><u>Soil Properties</u></h5>
+            <p>Type of Soil: {{infoLandDetails.typeOfSoil}}<br>
+                ph: {{infoLandDetails.ph}}<br>
+                Other Properties: {{infoLandDetails.soilProperties}}
+            </p>
+            <h5><u>Land History</u></h5>
+            <p>{{infoLandDetails.landHistory}}</p>
+            <small><cite>Land Uploaded On: {{infoLandDetails.dateTime}}</cite></small>
+            <div class="row">
+                <h5><u>Other Images</u></h5>
+                {% for infoImage in infoImage %}
+                <div class="col-sm-3">
+                    <img class="zoom" src="{{infoImage.image.url}}">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

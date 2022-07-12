@@ -1,0 +1,23 @@
+{% extends 'appLandlocator/base.html' %}
+{% block title %}LandLocator: Lands{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        {% for infoLand in infoLand %}
+        <div class="col-sm-4">
+            <div class="card" style="margin: 10px; height: 355px;">
+              <img src="{{infoLand.primaryImage.url}}" class="card-img-top" alt="..." style="width: 100%; height: 200px;">
+              <div class="card-body">
+                <h5 class="card-title">{{infoLand.location}}</h5>
+                <p class="card-text">{{infoLand.size}} Acres of land, costing ksh.{{infoLand.cost}}</p>
+                <a href="{% url 'appLandLocator:landDetails' infoLand.landCode %}" class="btn btn-primary">Check Out</a>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
