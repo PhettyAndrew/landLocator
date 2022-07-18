@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, logout, login
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Land, Image
-from .forms import UserForm
+from .forms import UserForm, LandForm, ImageForm
 
 
 # Create your views here.
@@ -65,3 +65,18 @@ def landDetails(request, landId):
         'infoImage':infoImage,
     }
     return render(request, 'appLandLocator/land-details.html', context)
+
+
+# Upload Land Function
+def uploadLand(request):
+    landForm = LandForm(request.POST or None)
+    imageForm = ImageForm(request.POST or None)
+    if landForm.is_valid() and imageForm.is_valid():
+        landForm.save()
+        imageForm.save()
+        return redirect('appLandLocator:lands')
+    context = {
+        'landForm': landForm,
+        'imageForm': imageForm,
+    }
+    return render(request, 'appLandLocator/upload-land.html', context)
