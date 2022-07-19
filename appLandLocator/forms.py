@@ -16,17 +16,6 @@ class UserForm(forms.ModelForm):
 class LandForm(forms.ModelForm):
     class Meta:
         model = Land
-        widgets = {
-            'landCode': forms.TextInput(attrs={'placeholder': 'Land Code'}),
-            'ph': forms.NumberInput(attrs={'placeholder': 'pH e.g 7.0'}),
-            'size': forms.NumberInput(attrs={'placeholder': 'Land Size in Acres'}),
-            'location': forms.TextInput(attrs={'placeholder': 'Location'}),
-            'typeOfSoil': forms.TextInput(attrs={'placeholder': 'Type Of Soil'}),
-            'soilProperties': forms.TextInput(attrs={'placeholder': 'Soil Properties'}),
-            'cost': forms.NumberInput(attrs={'placeholder': 'Cost in Dollars'}),
-            'landHistory': forms.TextInput(attrs={'placeholder': 'Land Size in Acres'}),
-
-        }
         fields = ['landCode', 'ph', 'size', 'location', 'typeOfSoil', 'soilProperties', 'cost', 'landHistory', 'primaryImage']
 
 

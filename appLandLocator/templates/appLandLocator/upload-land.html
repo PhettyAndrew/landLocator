@@ -12,7 +12,7 @@
 
 <div class="container" style="text-align: center; margin-top: 20px;">
     <div class="row" style="display: inline-block;">
-        <h4>UPLOAD LAND FORM</h4>
+        <h4 style="Font-family: Orbitron;">UPLOAD LAND FORM</h4>
     </div>
 </div>
 
@@ -26,7 +26,6 @@
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{  landForm | crispy }}
-                    {{ imageForm | crispy }}
                     <div class="form-group">
                         <button type="submit" class="btn btn-danger" style="width: 100%; Font-family: Jura;">SUBMIT</button>
                         <div class="row">

@@ -11,4 +11,6 @@ urlpatterns = [
     path('lands', views.lands, name='lands'),
     path('land-details/codeL<int:landId>D', views.landDetails, name='landDetails'),
     path('upload-land', views.uploadLand, name='uploadLand'),
+    path('delete-land/codeL<int:land_code>D', views.deleteLand, name='deleteLand'),
+    path('update-land/codeL<int:land_code>D', views.updateLand, name='updateLand'),
 ]

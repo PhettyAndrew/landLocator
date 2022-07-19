@@ -8,6 +8,7 @@ from .forms import UserForm, LandForm, ImageForm
 # Create your views here.
 
 
+# Signup Function
 def signup(request):
     form = UserForm(request.POST or None)
     if form.is_valid():
@@ -22,6 +23,7 @@ def signup(request):
     return render(request, 'appLandLocator/signup.html', {'form': form})
 
 
+# Login Function
 def login_user(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -36,11 +38,13 @@ def login_user(request):
     return render(request, 'appLandLocator/login.html')
 
 
+# Logout Function
 def logout_user(request):
     logout(request)
     return redirect('appLandLocator:index')
 
 
+# Home Page Function
 def index(request):
     infoLand = Land.objects.order_by('?')
     context = {
@@ -49,6 +53,7 @@ def index(request):
     return render(request, 'appLandLocator/index.html', context)
 
 
+# Lands Page Function
 def lands(request):
     infoLand = Land.objects.all()
     context = {
@@ -57,6 +62,7 @@ def lands(request):
     return render(request, 'appLandLocator/lands.html', context)
 
 
+# Land Details Page Function
 def landDetails(request, landId):
     infoLandDetails = get_object_or_404(Land, landCode=landId)
     infoImage = Image.objects.filter(land__landCode__contains=landId)
@@ -69,14 +75,29 @@ def landDetails(request, landId):
 
 # Upload Land Function
 def uploadLand(request):
-    landForm = LandForm(request.POST or None)
-    imageForm = ImageForm(request.POST or None)
-    if landForm.is_valid() and imageForm.is_valid():
+    landForm = LandForm(request.POST or None, request.FILES or None)
+    if landForm.is_valid():
         landForm.save()
-        imageForm.save()
         return redirect('appLandLocator:lands')
     context = {
         'landForm': landForm,
-        'imageForm': imageForm,
     }
     return render(request, 'appLandLocator/upload-land.html', context)
+
+
+# Delete Land Function
+def deleteLand(request, land_code):
+    land = get_object_or_404(Land, landCode=land_code)
+    land.delete()
+    return redirect('appLandLocator:lands')
+
+
+# Update Land Function
+def updateLand(request, land_code):
+    land = get_object_or_404(Land, landCode=land_code)
+    landForm = LandForm(request.POST or None, request.FILES or None, instance=land)
+
+    if landForm.is_valid():
+        landForm.save()
+        return redirect('appLandLocator:lands')
+    return render(request, 'appLandLocator/upload-land.html', {'landForm': landForm})
